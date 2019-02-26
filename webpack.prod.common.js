@@ -43,7 +43,7 @@ module.exports = {
   //入口文件路径
   context: path.resolve(__dirname, "src/entries"),
   //entry: "./src/index.js",
-  entry,
+  //entry,
   module: {
     rules: [
       //通知webpack使用babel，而不是手动命令行编译
@@ -142,14 +142,14 @@ module.exports = {
     /* new OptimizeCssAssetsPlugin({
       //assetNameRegExp: /css\/\.normalize\.css$/g
     }), */
-    ...HtmlWebpackPlugins,
+    //...HtmlWebpackPlugins,
     //与copy-webpack-plugin及html-webpack-plugin配合使用，将复制的assets自动引入到生成的html中
     new HtmlWebpackIncludeAssetsPlugin({
       //与html-webpack-plugin一样参照dist目录
       assets: ["css/normalize.css"],
       append: false
     }),
-    new webpack.HashedModuleIdsPlugin(),
-    new BundleAnalyzerPlugin()
+    new webpack.HashedModuleIdsPlugin()
+    //new BundleAnalyzerPlugin()
   ]
 };

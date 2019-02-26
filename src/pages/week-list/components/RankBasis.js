@@ -26,7 +26,7 @@ class RankBasis extends React.Component {
     let listType = this.props.listType;
     switch (listType) {
       case 0:
-        return "获得指定";
+        return "获得";
       case 1:
         return "送出指定礼物";
     }
