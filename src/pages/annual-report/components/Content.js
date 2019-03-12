@@ -1,28 +1,28 @@
-import React from 'react';
-import styled, { injectGlobal, keyframes } from 'styled-components';
-import SwipeableViews from 'react-swipeable-views';
+import React from "react";
+import styled, { injectGlobal, keyframes } from "styled-components";
+import SwipeableViews from "react-swipeable-views";
 
-import contentBorder from '../../../../static/annual-report/contentBorder.png';
-import darkBlue from '../../../../static/annual-report/darkBlue.png';
+import contentBorder from "../../../../static/annual-report/contentBorder.png";
+import darkBlue from "../../../../static/annual-report/darkBlue.png";
 
-import next from '../../../../static/annual-report/next.png';
+import next from "../../../../static/annual-report/next.png";
 
-import Zpix from '../../../../static/annual-report/Zpix.ttf';
+import Zpix from "../../../../static/annual-report/Zpix.ttf";
 
-import ComeDay from './ComeDay';
-import AnnualGame from './AnnualGame';
-import GoodAt from './GoodAt';
-import FirstPage from './FirstPage';
-import FriendReport from './FriendReport';
-import PlayReport from './PlayReport';
-import DeskmateGame from './DeskmateGame';
+import ComeDay from "./ComeDay";
+import AnnualGame from "./AnnualGame";
+import GoodAt from "./GoodAt";
+import FirstPage from "./FirstPage";
+import FriendReport from "./FriendReport";
+import PlayReport from "./PlayReport";
+import DeskmateGame from "./DeskmateGame";
 
-injectGlobal`
+/* injectGlobal`
   @font-face {
     font-family: Zpix;
     src: url('${Zpix}') ;
   }
-`;
+`; */
 
 class Content extends React.Component {
   constructor(props) {
@@ -75,12 +75,21 @@ class Content extends React.Component {
     let renderdSwipeableViews = (
       <SwipeableViews
         axis="y"
-        style={{ height: '78em' }}
+        style={{ height: "78em" }}
         animateHeight={true}
         index={index}
-        onChangeIndex={(index) => {
+        onChangeIndex={index => {
           handleChangeIndex(index);
-        }}>
+        }}
+        springConfig={{
+          duration: "1s",
+          easeFunction: "cubic-bezier(0.15, 0.3, 0.25, 1)",
+          delay: "0s"
+        }}
+        onTransitionEnd={() => {
+          showNextFn();
+        }}
+      >
         <SwipeableWrapper>
           <FirstPage handleChangeIndex={handleChangeIndex} {...firstPageInfo} />
         </SwipeableWrapper>
@@ -109,14 +118,27 @@ class Content extends React.Component {
       renderdSwipeableViews = (
         <SwipeableViews
           axis="y"
-          style={{ height: '78em' }}
+          style={{ height: "78em" }}
           animateHeight={true}
           index={index}
-          onChangeIndex={(index) => {
+          onChangeIndex={index => {
             handleChangeIndex(index);
-          }}>
+          }}
+          springConfig={{
+            duration: "1s",
+            easeFunction: "cubic-bezier(0.15, 0.3, 0.25, 1)",
+            delay: "0s"
+          }}
+          onTransitionEnd={() => {
+            //showNextFn();
+            console.log("end");
+          }}
+        >
           <SwipeableWrapper>
-            <FirstPage handleChangeIndex={handleChangeIndex} {...firstPageInfo} />
+            <FirstPage
+              handleChangeIndex={handleChangeIndex}
+              {...firstPageInfo}
+            />
           </SwipeableWrapper>
           <SwipeableWrapper>
             <ComeDay {...comeDayInfo} />
@@ -141,14 +163,26 @@ class Content extends React.Component {
       renderdSwipeableViews = (
         <SwipeableViews
           axis="y"
-          style={{ height: '78em' }}
+          style={{ height: "78em" }}
           animateHeight={true}
           index={index}
-          onChangeIndex={(index) => {
+          onChangeIndex={index => {
             handleChangeIndex(index);
-          }}>
+          }}
+          springConfig={{
+            duration: "1s",
+            easeFunction: "cubic-bezier(0.15, 0.3, 0.25, 1)",
+            delay: "0s"
+          }}
+          onTransitionEnd={() => {
+            showNextFn();
+          }}
+        >
           <SwipeableWrapper>
-            <FirstPage handleChangeIndex={handleChangeIndex} {...firstPageInfo} />
+            <FirstPage
+              handleChangeIndex={handleChangeIndex}
+              {...firstPageInfo}
+            />
           </SwipeableWrapper>
           <SwipeableWrapper>
             <ComeDay {...comeDayInfo} />
@@ -173,14 +207,27 @@ class Content extends React.Component {
       renderdSwipeableViews = (
         <SwipeableViews
           axis="y"
-          style={{ height: '78em' }}
+          style={{ height: "78em" }}
           animateHeight={true}
           index={index}
-          onChangeIndex={(index) => {
+          onChangeIndex={index => {
             handleChangeIndex(index);
-          }}>
+          }}
+          springConfig={{
+            duration: "1s",
+            easeFunction: "cubic-bezier(0.15, 0.3, 0.25, 1)",
+            delay: "0s"
+          }}
+          onTransitionEnd={() => {
+            //showNextFn();
+            console.log("end");
+          }}
+        >
           <SwipeableWrapper>
-            <FirstPage handleChangeIndex={handleChangeIndex} {...firstPageInfo} />
+            <FirstPage
+              handleChangeIndex={handleChangeIndex}
+              {...firstPageInfo}
+            />
           </SwipeableWrapper>
           <SwipeableWrapper>
             <ComeDay {...comeDayInfo} />
@@ -201,26 +248,26 @@ class Content extends React.Component {
       <ContenDiv>
         <Border src={contentBorder} />
         {renderdSwipeableViews}
-        {index != 0 &&
-          index != pageNum &&
-          showNext && (
-            <NextButton onClick={handleNextPage}>
-              <NextImg src={next} />
-            </NextButton>
-          )}
+        {index != 0 && index != pageNum && showNext && (
+          <NextButton onClick={handleNextPage}>
+            <NextImg src={next} />
+          </NextButton>
+        )}
       </ContenDiv>
     );
   }
 
   componentDidUpdate() {
-    setTimeout(() => {
-      document.getElementsByClassName('react-swipeable-view-container')[0].style.transition =
-        'transform 1s cubic-bezier(0.15, 0.3, 0.25, 1) 0s, height 1s cubic-bezier(0.15, 0.3, 0.25, 1) 0s';
-    }, 100);
+    /* setTimeout(() => {
+      document.getElementsByClassName(
+        "react-swipeable-view-container"
+      )[0].style.transition =
+        "transform 1s cubic-bezier(0.15, 0.3, 0.25, 1) 0s, height 1s cubic-bezier(0.15, 0.3, 0.25, 1) 0s";
+    }, 100); */
     //不支持组件onTransitionEnd的迂回之术。。。。。。。。。
-    setTimeout(() => {
+    /* setTimeout(() => {
       !this.props.showNext && this.props.showNextFn();
-    }, 1000);
+    }, 1000); */
   }
 }
 

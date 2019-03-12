@@ -10,6 +10,8 @@ module.exports = merge(common, {
   devtool: "inline-source-map",
   devServer: {
     //contentBase: path.join(__dirname, "public/"),
+    //不设置直接ip访问不了
+    host: "0.0.0.0",
     contentBase: path.join(__dirname, "dist/"),
     port: 3000,
     //不指定会假设bundle files在根目录（待验证）

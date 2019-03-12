@@ -105,7 +105,7 @@ module.exports = {
     publicPath: "/",
     filename: "js/[name].[contenthash].js"
   },
-  optimization: {
+  /* optimization: {
     splitChunks: {
       //这里production环境中每次只允许build一个页面，不用生成各页面共用的js
       //chunks: "all",
@@ -127,7 +127,7 @@ module.exports = {
       }
     },
     runtimeChunk: "single"
-  },
+  }, */
   //需要额外配置才能生效，如果没有，浏览器不再自动刷新
   //plugins: [new webpack.HotModuleReplacementPlugin()]
   plugins: [
